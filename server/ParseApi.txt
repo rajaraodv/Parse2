@@ -1,0 +1,247 @@
+//Usecase: Register a user:
+//Request POST
+//https://api.parse.com/1/users
+{
+    "ACL": {},
+    "username": "raja2",
+    "password": "test123",
+    "_ApplicationId": "0Oq3tTp9JMvd72LOrGN25PiEq9XgVHCxo57MQbpT",
+    "_JavaScriptKey": "vUFy2o7nFx3eeKVlZneYMPI2MBoxT5LhWNoIWPja",
+    "_ClientVersion": "js1.0.20",
+    "_InstallationId": "e3a0820f-3652-892e-f25d-1e8463edd18c"
+}
+
+//Response
+//- Sets _parse_session cookie
+//- User w/ objectId is created
+{
+    "createdAt": "2012-08-28T23:22:46.777Z",
+    "objectId": "mprvmZGdAR",
+    "sessionToken": "gcy6xzmmthqvqi3z8c66xu02c"
+}
+
+//Response2:
+{
+    "code": 202,
+    "error": "username raja1 already taken"
+}
+error: 400
+
+//----------------------------------------------------------------------
+//Usecase relogin(i guess)
+//https://api.parse.com/1/classes/_User/630EWkBvM1
+{
+    "username": "raja1",
+    "ACL": {
+    "630EWkBvM1": {
+        "read": true,
+            "write": true
+    }
+},
+    "_method": "PUT",
+    "_ApplicationId": "0Oq3tTp9JMvd72LOrGN25PiEq9XgVHCxo57MQbpT",
+    "_JavaScriptKey": "vUFy2o7nFx3eeKVlZneYMPI2MBoxT5LhWNoIWPja",
+    "_ClientVersion": "js1.0.20",
+    "_InstallationId": "e3a0820f-3652-892e-f25d-1e8463edd18c",
+    "_SessionToken": "jofu048ddmq84quwvjqqs5ck8"
+} {
+    "updatedAt": "2012-08-29T17:55:42.286Z"
+}
+//----------------------------------------------------------------------
+//
+//Usecase Login: Post
+{
+    "username": "raja1",
+    "password": "test123",
+    "_method": "GET",
+    "_ApplicationId": "0Oq3tTp9JMvd72LOrGN25PiEq9XgVHCxo57MQbpT",
+    "_JavaScriptKey": "vUFy2o7nFx3eeKVlZneYMPI2MBoxT5LhWNoIWPja",
+    "_ClientVersion": "js1.0.20",
+    "_InstallationId": "e3a0820f-3652-892e-f25d-1e8463edd18c"
+}
+
+//Response:
+{
+    "code": 101,
+    "error": "invalid login parameters"
+}
+status code: 404
+
+//Respose2:
+{
+    "username": "raja2",
+    "createdAt": "2012-08-28T23:22:46.777Z",
+    "updatedAt": "2012-08-29T00:04:28.000Z",
+    "objectId": "mprvmZGdAR",
+    "ACL": {
+    "mprvmZGdAR": {
+        "read": true,
+            "write": true
+    }
+},
+    "sessionToken": "gcy6xzmmthqvqi3z8c66xu02c"
+}
+
+
+//Usecase: Create an object
+//Request POST
+//https://api.parse.com/1/classes/Todo
+{
+    "content": "asdf",
+    "done": false,
+    "order": 3,
+    "user": {
+    "__type": "Pointer",
+        "className": "_User",
+        "objectId": "630EWkBvM1"
+},
+    "ACL": {
+    "630EWkBvM1": {
+        "read": true,
+            "write": true
+    }
+},
+    "_ApplicationId": "0Oq3tTp9JMvd72LOrGN25PiEq9XgVHCxo57MQbpT",
+    "_JavaScriptKey": "vUFy2o7nFx3eeKVlZneYMPI2MBoxT5LhWNoIWPja",
+    "_ClientVersion": "js1.0.20",
+    "_InstallationId": "e3a0820f-3652-892e-f25d-1e8463edd18c",
+    "_SessionToken": "jofu048ddmq84quwvjqqs5ck8"
+}
+
+//Response:
+{
+    "createdAt": "2012-08-29T00:27:03.115Z",
+    "objectId": "ju0ymDkv2K"
+}
+
+
+//----------------------------------------------------------------------
+//Usecase: Get an object(collection)
+//Request POST
+//
+//https://api.parse.com/1/classes/Todo
+{
+    "where": {
+    "user": {
+        "__type": "Pointer",
+            "className": "_User",
+            "objectId": "mprvmZGdAR"
+    }
+},
+    "_method": "GET",
+    "_ApplicationId": "0Oq3tTp9JMvd72LOrGN25PiEq9XgVHCxo57MQbpT",
+    "_JavaScriptKey": "vUFy2o7nFx3eeKVlZneYMPI2MBoxT5LhWNoIWPja",
+    "_ClientVersion": "js1.0.20",
+    "_InstallationId": "e3a0820f-3652-892e-f25d-1e8463edd18c",
+    "_SessionToken": "gcy6xzmmthqvqi3z8c66xu02c"
+}
+
+//Response1:
+{
+    "results": []
+}
+
+//Response2:
+{
+    "results": [{
+    "content": "af",
+    "done": false,
+    "order": 1,
+    "user": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "mprvmZGdAR"
+    },
+    "createdAt": "2012-08-29T00:05:10.713Z",
+    "updatedAt": "2012-08-29T00:05:10.713Z",
+    "objectId": "40IN822z55",
+    "ACL": {
+        "mprvmZGdAR": {
+            "read": true,
+            "write": true
+        }
+    }
+}, {
+    "content": "asdf",
+    "done": false,
+    "order": 2,
+    "user": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "mprvmZGdAR"
+    },
+    "createdAt": "2012-08-29T00:04:29.113Z",
+    "updatedAt": "2012-08-29T00:04:29.113Z",
+    "objectId": "4lhTbfGzOI",
+    "ACL": {
+        "mprvmZGdAR": {
+            "read": true,
+            "write": true
+        }
+    }
+}]
+}
+
+
+//----------------------------------------------------------------------
+//Usecase: Delete an object
+//- pass the classname after 'classes' and ObjectId after that
+//
+//https://api.parse.com/1/classes/Todo/4lhTbfGzOI
+{
+    "_method": "DELETE",
+    "_ApplicationId": "0Oq3tTp9JMvd72LOrGN25PiEq9XgVHCxo57MQbpT",
+    "_JavaScriptKey": "vUFy2o7nFx3eeKVlZneYMPI2MBoxT5LhWNoIWPja",
+    "_ClientVersion": "js1.0.20",
+    "_InstallationId": "e3a0820f-3652-892e-f25d-1e8463edd18c",
+    "_SessionToken": "gcy6xzmmthqvqi3z8c66xu02c"
+}
+
+//----------------------------------------------------------------------
+//Usecase: Update an object
+//
+//- pass the classname after 'classes' and ObjectId after that
+//https://api.parse.com/1/classes/Todo/4lhTbfGzOI
+{
+    "done": false,
+    "_method": "PUT",
+    "_ApplicationId": "0Oq3tTp9JMvd72LOrGN25PiEq9XgVHCxo57MQbpT",
+    "_JavaScriptKey": "vUFy2o7nFx3eeKVlZneYMPI2MBoxT5LhWNoIWPja",
+    "_ClientVersion": "js1.0.20",
+    "_InstallationId": "e3a0820f-3652-892e-f25d-1e8463edd18c",
+    "_SessionToken": "gcy6xzmmthqvqi3z8c66xu02c"
+}
+
+//Response:
+{
+    "updatedAt": "2012-08-29T00:13:42.595Z"
+}
+
+
+
+App1 AppId, RestID
+
+curl -X POST \
+  -H "X-Parse-Application-Id: Rq9rbLOa3m2xKddfS1Y2ThyxJmYWfGURyre6DvbD" \
+  -H "X-Parse-REST-API-Key: aUEPcuWynVXwJK5qjnHeIYGCLHHgNER5huipippT" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"dddd","password":"p_n7!-e8","phone":"415-392-0202"}' \
+  http://localhost:3000/1/users
+
+  curl -X POST \
+  -H "X-Parse-Application-Id: Rq9rbLOa3m2xKddfS1Y2ThyxJmYWfGURyre6DvbD" \
+  -H "X-Parse-REST-API-Key: aUEPcuWynVXwJK5qjnHeIYGCLHHgNER5huipippT" \
+  -H "X-Parse-Session-Token: h7HiY/nOa78rkAn0HAu+xX9r.kRK0VjAHMOPei6O6I3t8h6PP57AytOp2hclu2pTy6AM" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"eeesssse","password":"p_n7!-e8","phone":"415-392-0202"}' \
+  http://localhost:3000/1/users
+
+h7HiY/nOa78rkAn0HAu+xX9r
+
+  curl -X GET \
+  -H "X-Parse-Application-Id: Rq9rbLOa3m2xKddfS1Y2ThyxJmYWfGURyre6DvbD" \
+  -H "X-Parse-REST-API-Key: aUEPcuWynVXwJK5qjnHeIYGCLHHgNER5huipippT" \
+  https://api.parse.com/1/users/g7y9tkhB7O
+
+
+
